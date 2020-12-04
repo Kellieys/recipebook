@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">RecipeBook</string>
+    <string name="welcome">Welcome to Recipe Book</string>
+    <string name="Please_Enter">Please Enter:</string>
+    <string name="bookLogo">Recipe Logo</string>
+    <string name="recipeTitle">Recipe Title:</string>
+    <string name="recipePara">Recipe Instructions:</string>
+    <string name="recipeIngredient">Recipe Ingredients:</string>
+    <string name="addRecipe">+ Add Recipe</string>
+    <string name="showAll">SHOW ALL</string>
+
+
+</resources>
