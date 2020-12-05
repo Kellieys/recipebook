@@ -7,6 +7,7 @@
     android:background="@drawable/bgtheme"
     tools:context=".MainActivity">
 
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
@@ -81,7 +82,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/recipe_para_textview"
+        android:id="@+id/recipe_instruct_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -94,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/recipe_title_editText" />
 
     <EditText
-        android:id="@+id/recipe_paragraph_editText"
+        android:id="@+id/recipe_instruct_editText"
         android:layout_width="303dp"
         android:layout_height="70dp"
         android:layout_marginTop="5dp"
@@ -102,11 +103,11 @@
         android:ems="10"
         android:importantForAutofill="no"
         android:inputType="textMultiLine"
-        android:labelFor="@+id/recipe_paragraph_editText"
+        android:labelFor="@+id/recipe_instruct_editText"
         android:alpha="0.7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_para_textview" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_instruct_textview" />
 
     <TextView
         android:id="@+id/recipe_ingredient_textview"
@@ -120,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recipe_paragraph_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/recipe_instruct_editText" />
 
     <EditText
         android:id="@+id/recipe_ingredient_editText"
@@ -145,7 +146,7 @@
         android:layout_height="43dp"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="184dp"
         android:gravity="center_horizontal"
         android:onClick="add_recipe_onclick"
@@ -162,10 +163,10 @@
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_gravity="center"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:gravity="center_horizontal"
-        android:onClick="add_recipe_onclick"
+        android:onClick="show_all_onclick"
         android:text="@string/showAll"
         android:textColor="@color/blackColor"
         android:textStyle="bold"

@@ -4,9 +4,9 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="blackColor">#000000</color>
-    <color name="bgStart">#C6FFDD</color>
+    <color name="bgStart">#59C5BA</color>
     <color name="bgMiddle">#FBD786</color>
-    <color name="bgEnd">#f7797d</color>
+    <color name="tabColor">#FB9B0C</color>
     <color name="whiteColor">#FFFFFF</color>
     <color name="greyColor">#808080</color>
     <color name="lightgreyColor">#DCDCDC</color>
