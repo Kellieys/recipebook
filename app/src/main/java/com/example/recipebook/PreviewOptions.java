@@ -1,4 +1,4 @@
 package com.example.recipebook;
 
-public class sorting {
+public class PreviewOptions {
 }

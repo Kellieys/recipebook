@@ -42,7 +42,7 @@ public class RecipeContract {
 
     //field names for ingredients
     public static final String INGREDIENT_ID = "_id";
-    public static final String INGREDIENT_NAME = "ingredients";
+    public static final String INGREDIENT_LIST = "ingredients";
 
     //field names for recipe_ingredients
     public static final String RECIPE_INGREDIENTS_RECIPE_ID = "recipe_id";
@@ -93,7 +93,7 @@ public class RecipeContract {
                         "(" +
                         INGREDIENT_ID +
                         " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, " +
-                        INGREDIENT_NAME +
+                        INGREDIENT_LIST +
                         " VARCHAR(128) NOT NULL) ";
 
         public static final String DELETE_TABLE_QUERY = "DROP TABLE IF EXISTS " + TABLE_INGREDIENTS;

@@ -51,13 +51,13 @@ public class CRUDHandler extends SQLiteOpenHelper {
         Uri result;
 
         // Create contentValues that will be used to store recipe's input
-        ContentValues values = new ContentValues();
-        values.put(RecipeContract.RECIPE_TITLE, new_recipe.getRecipeTitle());
-        values.put(RecipeContract.RECIPE_INSTRUCTIONS, new_recipe.getRecipeInstruction());
-        values.put(RecipeContract.RECIPE_RATING, new_recipe.getRecipeRating());
+        ContentValues inputs = new ContentValues();
+        inputs.put(RecipeContract.RECIPE_TITLE, new_recipe.getRecipeTitle());
+        inputs.put(RecipeContract.RECIPE_INSTRUCTIONS, new_recipe.getRecipeInstruction());
+        inputs.put(RecipeContract.RECIPE_RATING, new_recipe.getRecipeRating());
 
         // Insert to the RECIPETABLE by using content resolvers
-        result = content_resolver.insert(RecipeContract.RECIPE_URI, values);
+        result = content_resolver.insert(RecipeContract.RECIPE_URI, inputs);
 
         // Assigned an ID to the new recipe
         StringBuffer tempStringBuffer = new StringBuffer(result.toString());
@@ -126,22 +126,17 @@ public class CRUDHandler extends SQLiteOpenHelper {
     // Update function for recipe when the user rate the recipe
     public boolean update_rating(RecipeFunction new_recipe)
     {
+        // Create contentValues that will be used to store input
+        ContentValues inputs = new ContentValues();
 
-        ContentValues values = new ContentValues();
-
-        // Store new information in ContentValues
-        values.put(RecipeContract.RECIPE_INSTRUCTIONS, new_recipe.getRecipeInstruction());
-        values.put(RecipeContract.RECIPE_RATING, new_recipe.getRecipeRating());
+        inputs.put(RecipeContract.RECIPE_RATING, new_recipe.getRecipeRating());
 
         boolean result = false;
 
-        // Query to update recipe
         String selection = "\""+ RecipeContract.RECIPE_TITLE + "\"=\"" + new_recipe.getRecipeTitle() + "\"";
 
-        // Check if any rows is updated with respect to the recipe name
-        int rowsUpdated = content_resolver.update(RecipeContract.RECIPE_URI, values, selection, null);
+        int rowsUpdated = content_resolver.update(RecipeContract.RECIPE_URI, inputs, selection, null);
 
-        // If there exist rows that have been updated
         if(rowsUpdated > 0)
         {
             result = true;
@@ -151,10 +146,136 @@ public class CRUDHandler extends SQLiteOpenHelper {
         return result;
     }
 
+    // Look for all recipe
+    public RecipeFunction search_recipe(String recipe_title)
+    {
+        // Use recipe title to find the correspond recipe
+        String selection = "\""+ RecipeContract.RECIPE_TITLE + "\"=\"" + recipe_title + "\"";
+        Cursor cursor = content_resolver.query(RecipeContract.RECIPE_URI,null, selection, null, null);
+        RecipeFunction recipe_function = new RecipeFunction();
 
+        // If recipe exist, move cursor and point to it
+        // else return null
+        if (cursor.moveToFirst()) {
+            // Store details in recipe object
+            recipe_function.setRecipeId(cursor.getInt(cursor.getColumnIndex(RecipeContract.RECIPE_ID)));
+            recipe_function.setRecipeTitle(cursor.getString(cursor.getColumnIndex(RecipeContract.RECIPE_TITLE)));
+            recipe_function.setRecipeInstruction(cursor.getString(cursor.getColumnIndex(RecipeContract.RECIPE_INSTRUCTIONS)));
+            recipe_function.setRecipeRating(cursor.getFloat(cursor.getColumnIndex(RecipeContract.RECIPE_RATING)));
+            cursor.close();
+        }
+        else
+            {
+            recipe_function = null;
+        }
+        return recipe_function;
+    }
 
+    // Function to add ingredients into ingredients table
+    public int add_ingredients(String new_ingredients)
+    {
+        Uri result;
+
+        // Create contentValues that will be used to store ingredients's input
+        ContentValues inputs = new ContentValues();
+        inputs.put(RecipeContract.INGREDIENT_LIST, new_ingredients);
+
+        // Insert to the INGREDIENTSTABLE by using content resolvers
+        result = content_resolver.insert(RecipeContract.INGREDIENT_URI,inputs);
+
+        // Assigned an ID to the new ingredients
+        StringBuffer tempStringBuffer = new StringBuffer(result.toString());
+
+        // Delete space inputted by user
+        tempStringBuffer.replace(0,12,"");
+
+        return Integer.parseInt(tempStringBuffer.toString());
+    }
+
+    // Function that responsible to find the ingredients id given recipe ID
+    public ArrayList<Integer> recipe_ingredients_id(int id)
+    {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        // Find correspond ID
+        String selection = "\""+ RecipeContract.RECIPE_INGREDIENTS_RECIPE_ID + "\"=\"" + id + "\"";
+
+        Cursor cursor = content_resolver.query(RecipeContract.RECIPE_INGREDIENTS_URI,null, selection, null, null);
+
+        // If recipe ingredients exist, move cursor and point to it
+        if (cursor.moveToFirst()) {
+
+            // While loop until the cursor reach
+            while (!cursor.isAfterLast()) {
+                arrayList.add(cursor.getInt(cursor.getColumnIndex(RecipeContract.RECIPE_INGREDIENTS_INGREDIENT_ID)));
+
+                // Loop continue to next
+                cursor.moveToNext();
+            }
+        }
+        return arrayList;
+    }
+
+    // Look for all ingredients
+    public ArrayList<String> search_ingredients()
+    {
+        ArrayList<String> arrayList = new ArrayList<>();
+
+        // Sort by ascending order
+        Cursor cursor = content_resolver.query(RecipeContract.INGREDIENT_URI, null, null, null, RecipeContract.INGREDIENT_LIST + " ASC");
+
+        // If the ingredients exist, move the cursor to the first ingredients title
+        if (cursor.moveToFirst()) {
+
+            // While loop until the cursor to reach the last
+            while (!cursor.isAfterLast()) {
+                arrayList.add(cursor.getString(cursor.getColumnIndex(RecipeContract.INGREDIENT_LIST)));
+
+                // Loop continue to next
+                cursor.moveToNext();
+            }
+        }
+        return arrayList;
+    }
+
+    // Function to add value to many to many table
+    public void add_recipe_ingredients(int insert_recipe_id, int insert_ingredients_id)
+    {
+
+        // Create contentValues that will be used to store recipe's input
+        ContentValues inputs = new ContentValues();
+        inputs.put(RecipeContract.RECIPE_INGREDIENTS_RECIPE_ID, insert_recipe_id);
+        inputs.put(RecipeContract.RECIPE_INGREDIENTS_INGREDIENT_ID,insert_ingredients_id);
+
+        // Insert to the TABLE by using content resolvers
+        content_resolver.insert(RecipeContract.RECIPE_INGREDIENTS_URI, inputs);
+    }
+
+    // Use ID of the ingredients to GET all the ingredients that needed to be display on UI as list
+    public String search_ingredients_id(int id)
+    {
+        String ingredients_list;
+
+        // Find correspond ID
+        String selection = "\""+ RecipeContract.INGREDIENT_ID + "\"=\"" + id + "\"";
+
+        Cursor cursor = content_resolver.query(RecipeContract.INGREDIENT_URI,null, selection, null, null);
+
+        // Consecutively move the cursor to point to the first one
+        // when the cursor still in the boundary of >=1
+        if(cursor.moveToFirst() && cursor.getCount() >= 1) {
+
+            // Do while loop to keep getting the ingredients
+            // until the cursor points to end
+            do {
+                ingredients_list = cursor.getString(cursor.getColumnIndex(RecipeContract.INGREDIENT_LIST));
+            } while (cursor.moveToNext());
+        }
+        else{
+            ingredients_list = "No ingredients found";
+        }
+
+        return ingredients_list;
+    }
 
 } //end class
-
-
-

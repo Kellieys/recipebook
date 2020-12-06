@@ -53,25 +53,30 @@ public class MainActivity extends AppCompatActivity {
             String ingredients[] = recipe_ingredients.getText().toString().split("\\r?\\n");
 
             // Add the recipe's ingredients to respective table
-            ArrayList<Integer> ingredientsInsertId = new ArrayList<Integer>();
-            for(String ingredient : ingredients)
+            ArrayList<Integer> ingredientsID = new ArrayList<Integer>();
+
+            // For loop for one ingredients to all ingredients and add to table
+            for(String one_ingredient : ingredients)
             {
-                ingredientsInsertId.add(crud_handler.addIngredients(ingredient));
+                ingredientsID.add(crud_handler.add_ingredients(one_ingredient));
             }
 
-            // Connect recipe and ingredients relation with a many to many table
-            for(int i = 0 ; i < ingredientsInsertId.size(); i++){
-                crud_handler.addRecipeIngredients(recipeID,ingredientsInsertId.get(i));
+            // Add recipe ID and ingredients ID to the RECIPE_INGREDIENTS_TABLE
+            for(int i = 0 ; i < ingredientsID.size(); i++){
+                crud_handler.add_recipe_ingredients(recipeID,ingredientsID.get(i));
             }
 
+            // Once inputted, empty the EditText for next input
+            recipe_title.setText("");
+            recipe_instruction.setText("");
+            recipe_ingredients.setText("");
         }
-
     }
 
     //handle show all button when it is click
     public void show_all_onclick(View view)
     {
-        Intent i =  new Intent(this, sorting.class);
+        Intent i =  new Intent(this, PreviewOptions.class);
         startActivity(i);
     }
 
