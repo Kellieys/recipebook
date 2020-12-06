@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import java.util.ArrayList;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         recipe_title = findViewById(R.id.recipe_title_editText);
         recipe_instruction = findViewById(R.id.recipe_instruct_editText);
         recipe_ingredients = findViewById(R.id.recipe_ingredient_editText);
@@ -44,6 +47,23 @@ public class MainActivity extends AppCompatActivity {
             RecipeFunction recipe = new RecipeFunction(recipe_title.getText().toString(), recipe_instruction.getText().toString(), (float)0);
 
             //give an ID to the recipe that is going to be added
+            int recipeID = crud_handler.add_recipe(recipe);
+
+            // Suggested by coursework sheet
+            String ingredients[] = recipe_ingredients.getText().toString().split("\\r?\\n");
+
+            // Add the recipe's ingredients to respective table
+            ArrayList<Integer> ingredientsInsertId = new ArrayList<Integer>();
+            for(String ingredient : ingredients)
+            {
+                ingredientsInsertId.add(crud_handler.addIngredients(ingredient));
+            }
+
+            // Connect recipe and ingredients relation with a many to many table
+            for(int i = 0 ; i < ingredientsInsertId.size(); i++){
+                crud_handler.addRecipeIngredients(recipeID,ingredientsInsertId.get(i));
+            }
+
         }
 
     }

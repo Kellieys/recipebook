@@ -34,15 +34,17 @@ public class RecipeContract {
     public static final int RECIPE_INGREDIENTS = 5;
     public static final int RECIPE_INGREDIENTS_TABLE_ID = 6;
 
-    //field names
+    //field names for recipe
     public static final String RECIPE_ID = "_id";
-    public static final String RECIPE_NAME = "name";
+    public static final String RECIPE_TITLE = "title";
     public static final String RECIPE_INSTRUCTIONS = "instructions";
     public static final String RECIPE_RATING = "rating";
 
+    //field names for ingredients
     public static final String INGREDIENT_ID = "_id";
-    public static final String INGREDIENT_NAME = "ingredientname";
+    public static final String INGREDIENT_NAME = "ingredients";
 
+    //field names for recipe_ingredients
     public static final String RECIPE_INGREDIENTS_RECIPE_ID = "recipe_id";
     public static final String RECIPE_INGREDIENTS_INGREDIENT_ID = "ingredient_id";
 
@@ -72,7 +74,7 @@ public class RecipeContract {
                         "(" +
                         RECIPE_ID +
                         " INTEGER NOT NULL PRIMARY KEY, " +
-                        RECIPE_NAME +
+                        RECIPE_TITLE +
                         " VARCHAR(128) NOT NULL, " +
                         RECIPE_INSTRUCTIONS +
                         " VARCHAR(128) NOT NULL, " +
@@ -85,7 +87,7 @@ public class RecipeContract {
     // function to create table for ingredients
     public static abstract class IngredientsTable implements BaseColumns {
         // Suggested by coursework sheet
-        public static final String CREATE_RECIPE_TABLE_QUERY =
+        public static final String CREATE_INGREDIENTS_TABLE =
                 "CREATE TABLE " +
                         TABLE_INGREDIENTS +
                         "(" +
@@ -100,7 +102,7 @@ public class RecipeContract {
     // function to create a table for many to many relationship
     public static abstract class RecipeIngredientsTable implements BaseColumns {
         // Suggested by coursework sheet
-        public static final String CREATE_RECIPE_TABLE_QUERY =
+        public static final String CREATE_RECIPE_INGREDIENTS_TABLE =
                 "CREATE TABLE " + TABLE_RECIPE_INGREDIENTS +
                         " (  recipe_id INT NOT NULL,  " +
                         "ingredient_id INT NOT NULL, " +
