@@ -18,7 +18,7 @@ public class RecipeContract {
     public static final String TABLE_INGREDIENTS = "ingredients";
     public static final String TABLE_RECIPE_INGREDIENTS = "recipe_ingredient";
 
-    //Place in my content provider
+    //Place in my content provider = AppContentProvider
     public static final String AUTHORITY = "com.example.recipebook.AppContentProvider";
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
 

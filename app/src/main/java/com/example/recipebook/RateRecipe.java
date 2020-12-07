@@ -41,7 +41,7 @@ public class RateRecipe extends AppCompatActivity {
         crud_handler = new CRUDHandler(this, null, null, 1);
 
         // get recipe selected by user
-        recipe_title = getIntent().getStringExtra("selected recipe");
+        recipe_title = getIntent().getStringExtra("clicked recipe");
         recipe_title_textview.setText(recipe_title);
 
         star_bar_handler();

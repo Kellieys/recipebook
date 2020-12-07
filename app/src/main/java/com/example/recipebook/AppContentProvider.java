@@ -58,7 +58,7 @@ public class AppContentProvider extends ContentProvider {
 
     }
 
-    // Delete from Table
+    // Not Implemented
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Uri matching
