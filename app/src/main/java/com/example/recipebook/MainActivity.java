@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText recipe_title;
     private EditText recipe_instruction;
     private EditText recipe_ingredients;
-    private ContentProvider content_provider;
+    private AppContentProvider content_provider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         recipe_title = findViewById(R.id.recipe_title_editText);
         recipe_instruction = findViewById(R.id.recipe_instruct_editText);
         recipe_ingredients = findViewById(R.id.recipe_ingredient_editText);
-        content_provider = new ContentProvider();
+        content_provider = new AppContentProvider();
     }
 
     //handle add recipe button when it is click

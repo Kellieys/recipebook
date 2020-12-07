@@ -19,7 +19,7 @@ public class RecipeContract {
     public static final String TABLE_RECIPE_INGREDIENTS = "recipe_ingredient";
 
     //Place in my content provider
-    public static final String AUTHORITY = "com.example.recipebook.ContentProvider";
+    public static final String AUTHORITY = "com.example.recipebook.AppContentProvider";
     public static final Uri AUTHORITY_URI = Uri.parse("content://" + AUTHORITY);
 
     //Put in constant defined for table information into uri to identify each correspond location
