@@ -8,6 +8,13 @@
     <string name="recipeIngredient">Recipe Ingredients:</string>
     <string name="addRecipe">+ Add Recipe</string>
     <string name="showAll">SHOW ALL</string>
+    <string name="view_by">Which do you want to view by ?</string>
+    <string name="line">————————————————————</string>
+    <string name="go">GO</string>
+    <string name="ingredients">~ Ingredients You Discovered ~</string>
+    <string name="check">CHECK</string>
+    <string name="recipe_list">Recipe List</string>
+    <string name="recipe_subtitle">—— Click on Recipe to rate ——</string>
 
 
 </resources>

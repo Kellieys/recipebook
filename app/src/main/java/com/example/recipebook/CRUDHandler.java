@@ -1,6 +1,6 @@
 package com.example.recipebook;
 
-//Importing libraries that is needed to use their function to achieve outcome
+//Importing libraries that is needed to use their functions to achieve certain functionalities
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;

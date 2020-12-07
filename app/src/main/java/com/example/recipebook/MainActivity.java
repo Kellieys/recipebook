@@ -1,14 +1,16 @@
 package com.example.recipebook;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
-
 import java.util.ArrayList;
+import android.widget.Toast;
+import android.content.Intent;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
 
+// This class is the first executed, when user launch the app
+// The activity_main.xml will be displayed
+// and will prompt for user input
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText recipe_instruction;
     private EditText recipe_ingredients;
     private ContentProvider content_provider;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
             for(int i = 0 ; i < ingredientsID.size(); i++){
                 crud_handler.add_recipe_ingredients(recipeID,ingredientsID.get(i));
             }
+
+            // Once the recipe is added, hint user
+            Toast.makeText(this, "Recipe Added", Toast.LENGTH_SHORT).show();
 
             // Once inputted, empty the EditText for next input
             recipe_title.setText("");
