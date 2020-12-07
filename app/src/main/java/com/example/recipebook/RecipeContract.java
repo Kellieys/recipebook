@@ -6,6 +6,7 @@ import android.provider.BaseColumns;
 
 //This class will be responsible for initializing the constant and
 //creating table for 1.recipes, 2.ingredients and 3. recipe_ingredients
+
 public class RecipeContract {
 
     //constant for database information

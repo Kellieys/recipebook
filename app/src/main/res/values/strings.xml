@@ -13,8 +13,10 @@
     <string name="go">GO</string>
     <string name="ingredients">~ Ingredients You Discovered ~</string>
     <string name="check">CHECK</string>
-    <string name="recipe_list">Recipe List</string>
+    <string name="recipe_list">Recipes List</string>
     <string name="recipe_subtitle">—— Click on Recipe to rate ——</string>
-
+    <string name="recipe_rating">What do you think about this recipe ?</string>
+    <string name="rate_btn">RATE</string>
+    <string name="ingredients_list">Ingredients List</string>
 
 </resources>

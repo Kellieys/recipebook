@@ -8,12 +8,11 @@ public class RecipeFunction {
     // Initialization for all variables
         private int id;
         private String recipe_title;
-        private String recipe_instruction;
         private float recipe_rating;
+        private String recipe_instruction;
 
     // Empty constructor if there are no arguments for reflection
-    public RecipeFunction() {
-    }
+    public RecipeFunction() { }
 
     // Constructor that contain arguments to take care of
     public RecipeFunction(String recipe_title, String recipe_instruction, float recipe_rating) {
@@ -23,7 +22,7 @@ public class RecipeFunction {
     }
 
     // Getter and setters functions that helped to protect the data
-    public int getRecipeId(){
+    public int getRecipeID(){
         return this.id;
     }
     public String getRecipeTitle() {
@@ -36,7 +35,7 @@ public class RecipeFunction {
         return this.recipe_rating;
     }
 
-    public void setRecipeId(int id){
+    public void setRecipeID(int id){
         this.id = id;
     }
     public void setRecipeTitle(String s) {
@@ -47,4 +46,4 @@ public class RecipeFunction {
         this.recipe_rating = value;
     }
 
-}
+} //end of class

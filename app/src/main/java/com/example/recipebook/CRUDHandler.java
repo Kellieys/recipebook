@@ -1,14 +1,14 @@
 package com.example.recipebook;
 
 //Importing libraries that is needed to use their functions to achieve certain functionalities
-import android.content.ContentResolver;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import java.util.ArrayList;
+import android.content.Context;
+import android.database.Cursor;
+import android.content.ContentValues;
+import android.content.ContentResolver;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 //This class purpose as a create,read,update,delete function handler for database
 //In this project, it will be focus on create, read, and update rating
@@ -158,7 +158,7 @@ public class CRUDHandler extends SQLiteOpenHelper {
         // else return null
         if (cursor.moveToFirst()) {
             // Store details in recipe object
-            recipe_function.setRecipeId(cursor.getInt(cursor.getColumnIndex(RecipeContract.RECIPE_ID)));
+            recipe_function.setRecipeID(cursor.getInt(cursor.getColumnIndex(RecipeContract.RECIPE_ID)));
             recipe_function.setRecipeTitle(cursor.getString(cursor.getColumnIndex(RecipeContract.RECIPE_TITLE)));
             recipe_function.setRecipeInstruction(cursor.getString(cursor.getColumnIndex(RecipeContract.RECIPE_INSTRUCTIONS)));
             recipe_function.setRecipeRating(cursor.getFloat(cursor.getColumnIndex(RecipeContract.RECIPE_RATING)));

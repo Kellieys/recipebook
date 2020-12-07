@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".PreviewOptions"></activity>
+        <activity android:name=".DisplayList"></activity>
+        <activity android:name=".RateRecipe"></activity>
+        <activity android:name=".SpecialIngredients"></activity>
+
     </application>
 
 </manifest>

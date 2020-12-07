@@ -19,7 +19,6 @@ public class DisplayList extends AppCompatActivity  {
     private CRUDHandler crud_handler;
     private ArrayList<String> all_recipe;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,7 @@ public class DisplayList extends AppCompatActivity  {
 
         // list all the recipe and sort them
         // show all the recipe in listview
-
+        // setOnItemClickListener REFERENCE: https://stackoverflow.com/questions/4709870/setonitemclicklistener-on-custom-listview
         all_recipe = crud_handler.all_recipe(sort_order);
         recipe_list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, all_recipe));
         recipe_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
