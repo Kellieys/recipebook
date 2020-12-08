@@ -22,7 +22,6 @@ public class AppContentProvider extends ContentProvider {
         return false;
     }
 
-    // Insert into selective table
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         // Uri matching
@@ -61,37 +60,17 @@ public class AppContentProvider extends ContentProvider {
     // Not Implemented
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Uri matching
-        int uriType = RecipeContract.sURIMatcher.match(uri);
-
-        // Get database
-        SQLiteDatabase sqlDB = crud_handler.getWritableDatabase();
-        int rowsDeleted = 0;
-
-        // Switch case to check for Uri
-        switch (uriType) {
-            case RecipeContract.RECIPE:
-                // Delete from recipe table
-                rowsDeleted = sqlDB.delete(RecipeContract.TABLE_RECIPES, selection, selectionArgs);
-                break;
-            case RecipeContract.RECIPE_INGREDIENTS:
-                // Delete from Ingredients table
-                rowsDeleted = sqlDB.delete(RecipeContract.TABLE_RECIPE_INGREDIENTS, selection, selectionArgs);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown URI: " + uri);
-        }
-        getContext().getContentResolver().notifyChange(uri, null);
-        return rowsDeleted;
+        // Not needed for this application
+        throw new UnsupportedOperationException("Not Implemented");
     }
 
+    // Not Implemented
     @Override
     public String getType(Uri uri) {
         // Not needed for this application
         throw new UnsupportedOperationException("Not Implemented");
     }
 
-    // Query
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         // Build SQLite query
