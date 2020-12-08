@@ -26,7 +26,7 @@ public class PreviewOptions extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, dropdown_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         dropdown.setAdapter(adapter);
-        int dropdownPosition = adapter.getPosition("Title");
+        int dropdownPosition = adapter.getPosition("Rating (High to Low)");
         dropdown.setSelection(dropdownPosition);
     }
 

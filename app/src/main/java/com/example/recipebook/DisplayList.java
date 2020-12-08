@@ -3,6 +3,8 @@ package com.example.recipebook;
 import android.view.View;
 import android.os.Bundle;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import android.content.Intent;
 import android.widget.ListView;
 import android.widget.AdapterView;
@@ -45,7 +47,11 @@ public class DisplayList extends AppCompatActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 clicked_recipe = recipe_list.getItemAtPosition(position).toString();
-                clicked_recipe = clicked_recipe.split("Rating")[0].trim();
+
+                String[] formatString = clicked_recipe.split("Rating");
+
+                clicked_recipe = formatString[0].trim();
+                System.out.println(clicked_recipe);
                 display_requested_recipe();
             }
         });

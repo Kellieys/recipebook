@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.RatingBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 // This class is responsible for displaying a recipe and
 // letting the user to rate the recipe
 
@@ -22,8 +23,6 @@ public class RateRecipe extends AppCompatActivity {
     private RecipeFunction recipe;
     private CRUDHandler crud_handler;
     private TextView recipe_title_textview;
-    private TextView recipe_instruction_textview;
-    private TextView recipe_ingredients_textview;
     private ArrayList<Integer> recipe_ingredients_ID;
     private ArrayList<String> ingredient_title = new ArrayList<String>();
 
@@ -33,8 +32,8 @@ public class RateRecipe extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rate_recipe);
         recipe_title_textview = findViewById(R.id.rate_recipe_title_text);
-        recipe_instruction_textview = findViewById(R.id.rate_recipe_instruction_text);
-        recipe_ingredients_textview = findViewById(R.id.rate_recipe_ingredients_text);
+        recipe_instruction = findViewById(R.id.rate_recipe_instruction_text);
+        recipe_ingredients = findViewById(R.id.rate_recipe_ingredients_text);
         star_bar = findViewById(R.id.rate_recipe_rating_starbar);
         rate_button = findViewById(R.id.rateBtn);
 

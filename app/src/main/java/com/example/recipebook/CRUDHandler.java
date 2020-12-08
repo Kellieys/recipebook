@@ -69,10 +69,11 @@ public class CRUDHandler extends SQLiteOpenHelper {
     // Function to handle read all recipe and display into the view
     public ArrayList<String> all_recipe(String sortOrder)
     {
+        System.out.println("all_recipe funciton");
         ArrayList<String> arrayList = new ArrayList<>();
 
         // View by title selected
-        if (sortOrder.equals("Title")) {
+        if (sortOrder.equals("Title (Alphabetical Order)")) {
 
             //Sort RECIPE_TITLE by ascending order
             Cursor cursor = content_resolver.query(RecipeContract.RECIPE_URI, null, null, null, RecipeContract.RECIPE_TITLE + " ASC");
@@ -101,7 +102,7 @@ public class CRUDHandler extends SQLiteOpenHelper {
         }
 
         // View by rating selected
-        else if (sortOrder.equals("Rating")) {
+        else if (sortOrder.equals("Rating (High to Low)")) {
 
             //Sort RECIPE_RATING by descending order
             Cursor cursor = content_resolver.query(RecipeContract.RECIPE_URI, null, null, null, RecipeContract.RECIPE_RATING + " DESC");
@@ -119,6 +120,9 @@ public class CRUDHandler extends SQLiteOpenHelper {
                     cursor.moveToNext();
                 }
             }
+        }
+        else{
+            System.out.println("Invalid Option");
         }
         return arrayList;
     } //end all_recipe
@@ -141,7 +145,6 @@ public class CRUDHandler extends SQLiteOpenHelper {
         {
             result = true;
         }
-
         // return update recipe result
         return result;
     }
